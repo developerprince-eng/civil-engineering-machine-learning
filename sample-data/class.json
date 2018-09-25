@@ -1,0 +1,7 @@
+{
+    "id":[0, 1, 2, 3, 4],
+    "Student Name": ["John", "Susan", "Smith", "Tinashe", "Thabani"],
+    "Student Number": ["Y00118","Y00218","Y00318","Y00418","Y00518"],
+    "Student Program": ["TIE","TCW","TIE","TEE","TCE"],
+    "Student Aggregate Grade": [2.1, 2.2, 1.0, 1.0, 2.1]
+}
