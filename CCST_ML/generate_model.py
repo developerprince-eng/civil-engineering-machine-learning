@@ -9,32 +9,25 @@ import numpy as np
 os.getcwd() 
 os.listdir(os.getcwd())
 
-class GENERATE_MODEL(object):
+class GENERATE_MODEL:
     def __init__(self, obj):
         self.obj = obj
-    @property
-    def obj(self):
-        return self._obj
-    
-    @obj.setter
-    def obj(self, obj):
-        self._obj = obj
+   
 
-    @classmethod   
     def __generate__(self, train_data):
         model = keras.Sequential([
-                 keras.layers.Dense(64, activation=tf.nn.relu, input_shap=(train_data[1],)),
-                 keras.layers.Dense(64, activation=tf.nn.relu),
+                 keras.layers.Dense(128, activation=tf.nn.relu),
+                 keras.layers.Dense(128, activation=tf.nn.relu),
                  keras.layers.Dense(1)
                 ])
-        optimizer = tf.train.RMSPropOptimizer(0.001)
+        
 
-        model.compile(loss='mse',
-                     optimizer=optimizer,
+        model.compile(loss='mean_squared_logarithmic_error',
+                     optimizer='adam',
                      metrics=['mae'])
         return model
 
-    @classmethod
+   
     def __normalize__(self, train_data, test_data):
         mean = train_data.mean(axis=0)
         std = train_data.std(axis=0)
@@ -42,9 +35,4 @@ class GENERATE_MODEL(object):
         test_data = (test_data - mean) / std
         data = [train_data, test_data]
         return data
-
-class PrintStar(keras.callbacks.Callback):
-  def on_epoch_end(self, epoch, logs):
-    if epoch % 100 == 0: print('')
-    print('*', end='')    
 

@@ -8,24 +8,17 @@ import numpy as py
 os.getcwd()
 os.listdir(os.getcwd())
 
-class RESC_DATA(object):
+class RESC_DATA:
     def __init__(self, path): 
-        self._path = path
+        self.path = path
 
-    @property
-    def path(self):
-        return self._path
-
-    @path.setter  
-    def path(self, path):
-        self._path = path
         
-    @classmethod
+    
     def __read_csv__(self):
         data_set = pd.read_csv(self.path, low_memory=False)
         return (data_set)
 
-    @classmethod
+   
     def __obtain_training_data__(self):
         data_set = pd.read_csv(self.path, low_memory=False)
         df = pd.DataFrame(data_set)
@@ -37,7 +30,7 @@ class RESC_DATA(object):
         
         return(train_data)
     
-    @classmethod
+    
     def __obtain_testing_data__(self):
         data_set = pd.read_csv(self.path, low_memory=False)
         df = pd.DataFrame(data_set)
@@ -49,8 +42,8 @@ class RESC_DATA(object):
 
         return(test_data)
     
-    @classmethod
-    def __obtain_training_label():
+    
+    def __obtain_training_label(self):
         data_set = pd.read_csv(self.path, low_memory=False)
         df = pd.DataFrame(data_set)
 
@@ -61,8 +54,8 @@ class RESC_DATA(object):
         
         return(train_lebel)
     
-    @classmethod
-    def __obtain_testing_label():
+    
+    def __obtain_testing_label(self):
         data_set = pd.read_csv(self.path, low_memory=False)
         df = pd.DataFrame(data_set)
 
