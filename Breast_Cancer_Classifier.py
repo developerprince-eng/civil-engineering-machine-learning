@@ -29,12 +29,12 @@ test_labels =  data_df.iloc[0:test_data_len, 10:11]
 
 model = keras.Sequential([
             keras.layers.Flatten(),
-            keras.layers.Dense(512, activation=tf.nn.relu),
-            keras.layers.Dense(512, activation=tf.nn.relu),
-            keras.layers.Dense(1, activation=tf.nn.softmax)
+            keras.layers.Dense(32, activation=tf.nn.relu, input_shape=(16,)),
+            keras.layers.Dense(32, activation=tf.nn.relu),
+            keras.layers.Dense(1, activation=tf.nn.sigmoid)
         ])
 
-model.compile(loss='logcosh',
+model.compile(loss='binary_crossentropy',
                 optimizer='adam',
                 metrics=['accuracy'])
 model.fit(x=train_data.values, y=train_labels.values, epochs=500)
@@ -42,3 +42,9 @@ model.fit(x=train_data.values, y=train_labels.values, epochs=500)
 val_loss, val_acc = model.evaluate(x=test_data.values, y=test_labels.values)
 
 print(val_loss, val_acc)
+
+test_predictions = model.predict(x=test_data.values).flatten()
+
+print(test_predictions)
+
+print(test_labels)

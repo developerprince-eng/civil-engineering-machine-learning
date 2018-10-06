@@ -64,7 +64,7 @@ test_predictions = model.predict(x=test_data.values).flatten()
 
 print(test_predictions)
 
-print(test_labels)
+print(x=test_labels.values)
 """ Save Model """
 #model.save('CCST_predictor.model')
 
