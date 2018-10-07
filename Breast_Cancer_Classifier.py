@@ -50,6 +50,9 @@ test_set_size = total_records = training_set_size
 training_features = randomized_data.head(training_set_size)[features].copy()
 training_labels = randomized_data.head(training_set_size)[labels].copy()
 
+training_features = training_features[features].astype(np.int64)
+training_labels = training_labels[labels].astype(np.int64)
+
 print(training_features.head())
 print(training_labels.head())
 

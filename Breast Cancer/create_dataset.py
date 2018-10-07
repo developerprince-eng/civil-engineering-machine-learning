@@ -52,7 +52,7 @@ class RESC_DATA:
 
         train_label = df.iloc[0:train_data_len,:]
         
-        return(train_lebel)
+        return(train_label)
     
     
     def __obtain_testing_label(self):
