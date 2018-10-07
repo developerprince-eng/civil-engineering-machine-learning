@@ -12,8 +12,8 @@ import os
 os.getcwd()
 os.listdir(os.getcwd())
 
-data = pd.read_csv('C:/Users/TechVillage Laptop01/Documents/WorkItems/ml-tut/sample-data/ccs_data.csv', low_memory=False)
-data_label = pd.read_csv('C:/Users/TechVillage Laptop01/Documents/WorkItems/ml-tut/sample-data/ccs_labels.csv', low_memory=False)
+data = pd.read_csv('sample-data/ccs_data.csv', low_memory=False)
+data_label = pd.read_csv('sample-data/ccs_labels.csv', low_memory=False)
 FEATURES = ['Cement', 'Blast Furnace Slag','Fly Ash','Water','Superplasticizer','Coarse Aggregate','Fine Aggregate','Age']
 
 labels = pd.DataFrame(data_label)
