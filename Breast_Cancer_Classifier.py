@@ -49,6 +49,7 @@ test_set_size = total_records = training_set_size
 # Build the training features and labels
 training_features = randomized_data.head(training_set_size)[features].copy()
 training_labels = randomized_data.head(training_set_size)[labels].copy()
+
 print(training_features.head())
 print(training_labels.head())
 
