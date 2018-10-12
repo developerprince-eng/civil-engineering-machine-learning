@@ -1,32 +1,21 @@
-from __future__ import print_function
 
-import os
-import tensorflow as tf
-import pandas as pd 
+import tensorflow as tf 
+from tensorflow import keras
 import numpy as np
+import os
 os.getcwd()
 os.listdir(os.getcwd())
+import CCST_ML.create_dataset as csdata
+import CCST_ML.generate_model as cs
 
-class Data:
-    def __init__(self, path):
-        self.path = path
+DT = csdata.RESC_DATA()
 
+test_data = DT.__obtain_testing_data__('sample-data/ccs_data.csv')
+train_data = DT.__obtain_training_data__('sample-data/ccs_data.csv')
 
-    def __input_fn__ (self, label_key, num_epochs, shuffle, batch_size):
-        filename = self.path
-        data_set = pd.read_csv(filename, low_memory=False)
-        df = pd.DataFrame(data_set)
-        label = df[label_key]
-        ds = tf.data.Dataset.from_tensor_slices((dict(df),label))
+MODEL = cs.GENERATE_MODEL()
+model = MODEL.__generate__(train_data)
 
-        if shuffle:
-            ds = ds.shuffle(200)
+test_predictions = model.predict(x=test_data.values).flatten()
 
-        ds = ds.batch(batch_size).repeat(num_epochs)
-
-        return ds
-    def train_data(self):
-        
-
-tf.enable_eager_execution()
-
+print(test_predictions)

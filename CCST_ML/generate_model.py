@@ -10,10 +10,9 @@ os.getcwd()
 os.listdir(os.getcwd())
 
 class GENERATE_MODEL:
-    def __init__(self, obj):
-        self.obj = obj
-   
-
+    def __init__(self):
+        self.is_model = True
+                
     def __generate__(self, train_data):
         model = keras.Sequential([
                  keras.layers.Dense(128, activation=tf.nn.relu),

@@ -49,12 +49,14 @@ test_set_size = total_records = training_set_size
 # Build the training features and labels
 training_features = randomized_data.head(training_set_size)[features].copy()
 training_labels = randomized_data.head(training_set_size)[labels].copy()
+training_features = training_features[features].astype('int64')
 
-training_features = training_features[features].astype(np.int64)
-training_labels = training_labels[labels].astype(np.int64)
+training_features = training_features.as_matrix()
+training_labels = training_labels.as_matrix()
+training_labels = training_labels.astype('int64')
 
-print(training_features.head())
-print(training_labels.head())
+print(training_features)
+print(training_labels)
 
 # Build the testing features and labels
 testing_features = randomized_data.tail(test_set_size)[features].copy()
@@ -96,12 +98,22 @@ classifier = tf.estimator.DNNClassifier(
                 n_classes=n_classes_spec, 
                 model_dir=tmp_dir_spec)
 
-# Define the training input function
+# Define the training input function using Pandas DataFrame
+"""
 train_input_fn = tf.estimator.inputs.pandas_input_fn(
                     x=training_features, 
                     y=training_labels, 
                     num_epochs=epochs_spec, 
                     shuffle=True)
+"""
+
+# Define the training input function using Numpy Arrays
+train_input_fn = tf.estimator.inputs.numpy_input_fn(
+                    x=training_features, 
+                    y=training_labels, 
+                    num_epochs=epochs_spec, 
+                    shuffle=True)
+
 
 # Train the model using the classifer.
 classifier.train(input_fn=train_input_fn, steps=steps_spec)
