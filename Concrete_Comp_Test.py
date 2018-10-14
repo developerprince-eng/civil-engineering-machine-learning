@@ -62,6 +62,8 @@ print(val_loss, val_acc)
 
 test_predictions = model.predict(x=test_data.values).flatten()
 
+print(test_labels)
+
 print(test_predictions)
 
 print(test_labels.values)
