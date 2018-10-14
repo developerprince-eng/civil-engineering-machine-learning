@@ -46,8 +46,9 @@ print(test_data)
 print(test_labels)
 
 model = keras.Sequential([
+            keras.layers.Dense(64, activation=tf.nn.relu),
             keras.layers.Dense(128, activation=tf.nn.relu),
-            keras.layers.Dense(128, activation=tf.nn.relu),
+            keras.layers.Dense(64, activation=tf.nn.relu),
             keras.layers.Dense(1)
         ])
 
