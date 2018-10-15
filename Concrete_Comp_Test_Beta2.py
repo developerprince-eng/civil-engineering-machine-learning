@@ -30,7 +30,7 @@ def main():
                     json_obj = json.dumps({'ccst':results[0][0]})
                     print(json_obj)
                     break
-                except ValueError:
+                except :
                     json_obj = json.dumps({'error':4})
                     print(json_obj)
 
