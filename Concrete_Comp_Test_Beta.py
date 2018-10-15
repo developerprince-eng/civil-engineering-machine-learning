@@ -15,11 +15,10 @@ def main():
 
     test_data = DT.__obtain_testing_data__('sample-data/ccs_data.csv')
     train_data = DT.__obtain_training_data__('sample-data/ccs_data.csv')
-    input_data = [sys.argv[1], sys.argv[2],sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8]]
     MODEL = cs.GENERATE_MODEL()
     model = MODEL.__generate__(train_data)
 
-    test_predictions = model.predict(x=input_data).flatten()
+    test_predictions = model.predict(x=test_data.values).flatten()
 
     print(test_predictions)
 
