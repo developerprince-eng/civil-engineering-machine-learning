@@ -4,34 +4,34 @@
 from __future__ import print_function, absolute_import, division
 
 import pandas as pd
-#import matplotlib.pyplot as plt
+import numpy as np
 import tensorflow as tf 
 from tensorflow import keras
+import sys
+import json
 import os
-os.getcwd()
-os.listdir(os.getcwd())
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+tf.logging.set_verbosity(tf.logging.ERROR)
+def main():
+    if len(sys.argv) == 10:
 
-data = pd.read_csv('sample-data/ccs_data.csv', low_memory=False)
-data_df = pd.DataFrame(data)
+        if sys.argv[1] == 'compile':
+            test_data = np.array([[int(sys.argv[2]), int(sys.argv[3]),int(sys.argv[4]),int(sys.argv[5]),int(sys.argv[6]),int(sys.argv[7]),int(sys.argv[8]),int(sys.argv[9])]]) 
 
-data_len = len(data_df.index)
-
-
-train_data_len = int(data_len * 0.8)
-test_data_len = int(data_len * 0.2)
-
-train_data =  data_df.iloc[0:train_data_len,:]
-test_data = data_df.iloc[0:test_data_len,:]
-
-
-mean = train_data.mean(axis=0)
-std = train_data.std(axis=0)
-
-test_data = (test_data - mean) / std
-
-
-CCST_model = tf.keras.models.load_model('CCST_predictor.model')
-
-predictions = CCST_model.predict(x=test_data.values)
-
-print(predictions)
+            CCST_model = tf.keras.models.load_model('CCST_predictor.model')
+            
+            predictions = CCST_model.predict(x=test_data)
+            results = predictions.tolist()
+            json_obj = json.dumps({'ccst':results[0][0]})
+            print(json_obj)
+        elif sys.argv[1] != 'compile':
+            json_obj = json.dumps({'error':5})
+            print(json_obj)
+    elif len(sys.argv) > 10:
+        json_obj = json.dumps({'error':1})
+        print(json_obj)
+    elif len(sys.argv) < 10:
+        json_obj = json.dumps({'error':0})
+        print(json_obj)
+if __name__ == '__main__':
+	main()

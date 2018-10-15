@@ -72,7 +72,7 @@ print(test_labels.values)
 model.save('CCST_predictor.model')
 
 CCST_model = tf.keras.models.load_model('CCST_predictor.model')
-
+print(test_data.values)
 predictions = CCST_model.predict(x=test_data.values)
 
 print(predictions)
