@@ -69,9 +69,9 @@ print(test_predictions)
 
 print(test_labels.values)
 """ Save Model """
-model.save('CCST_predictor.model')
+model.save('CCST_predictor.h5')
 
-CCST_model = tf.keras.models.load_model('CCST_predictor.model')
+CCST_model = tf.keras.models.load_model('CCST_predictor.h5')
 print(test_data.values)
 predictions = CCST_model.predict(x=test_data.values)
 

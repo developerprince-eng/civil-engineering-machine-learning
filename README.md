@@ -7,19 +7,19 @@ Please Take Note the Tutorial was compiled by: DeveloperPrince for pracrice purp
 
 You can utilize the solutions to improve your understanding in AI using TensorFlow 
 
-#Note
+# Note
 
 The Solutions are not production ready, if you want to make production ready model please take note of the tensorflow documentation or contact DeveloperPrince
 
-#Guide
+# Guide
 
 The repository contains two regression based problems one is complete with a saved machine learning model ready for production use and the other is still a work in progress
 
 ## Directorty Structure
 
-###Overview
+### Overview
 
-#CCST_ML
+# CCST_ML
 
 >Concrete compressive strength is determined by mixing different compositions of 7 elements which are namely:
 
@@ -97,7 +97,12 @@ Make sure the comand for compiling and running the model is compile anything out
 {"error": 5}
 ```
 
-#CCST_ML
+Make sure the comand for compiling and running the model is compile anything outside this will pass a json object of error = 4, this type of error is a runtime error
+
+```bash
+{"error": 4}
+```
+# CCST_ML
 
 >Condition monitoring of hydraulic systems is currently a blank or an empty project awaiting for you to try out on building your very own regression machine learning model
 
