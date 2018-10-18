@@ -3,6 +3,7 @@
 
 from __future__ import print_function, absolute_import, division
 
+#import h5py
 import pandas as pd
 #import matplotlib.pyplot as plt
 import tensorflow as tf 
@@ -69,7 +70,8 @@ print(test_predictions)
 
 print(test_labels.values)
 """ Save Model """
-model.save('CCST_predictor.h5')
+tf.keras.models.save_model('CCST_ML','CCST_predictor.h5', overwrite=True, include_optimizer=True)
+
 
 CCST_model = tf.keras.models.load_model('CCST_predictor.h5')
 print(test_data.values)
