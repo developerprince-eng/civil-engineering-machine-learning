@@ -3,7 +3,7 @@
 
 from __future__ import print_function, absolute_import, division
 
-#import h5py
+import h5py
 import pandas as pd
 #import matplotlib.pyplot as plt
 import tensorflow as tf 
@@ -46,7 +46,10 @@ print(test_data)
 
 print(test_labels)
 
+
+
 model = keras.Sequential([
+            keras.layers.Dense(32, activation=tf.nn.relu),
             keras.layers.Dense(64, activation=tf.nn.relu),
             keras.layers.Dense(128, activation=tf.nn.relu),
             keras.layers.Dense(64, activation=tf.nn.relu),
@@ -56,7 +59,7 @@ model = keras.Sequential([
 model.compile(loss='mean_squared_logarithmic_error',
                 optimizer='adam',
                 metrics=['mae'])
-model.fit(x=train_data.values, y=train_labels.values, epochs=500)
+model.fit(x=train_data.values, y=train_labels.values, epochs=1000)
 
 val_loss, val_acc = model.evaluate(x=test_data.values, y=test_labels.values)
 
@@ -70,11 +73,15 @@ print(test_predictions)
 
 print(test_labels.values)
 """ Save Model """
-tf.keras.models.save_model('CCST_ML','CCST_predictor.h5', overwrite=True, include_optimizer=True)
+
+#tf.keras.models.save_model(model,'CCST_predictor.model', overwrite=True, include_optimizer=True).model.get_config()
+#CCST_model = tf.keras.models.load_model('CCST_predictor.model')
 
 
-CCST_model = tf.keras.models.load_model('CCST_predictor.h5')
-print(test_data.values)
+model.save('CCST_predictor.h5')
+CCST_model = keras.models.load_model('CCST_predictor.h5')
 predictions = CCST_model.predict(x=test_data.values)
 
+print(test_data.values)
+print("")
 print(predictions)
