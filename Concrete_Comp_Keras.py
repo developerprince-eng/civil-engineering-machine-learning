@@ -8,7 +8,7 @@ import pandas as pd
 #import matplotlib.pyplot as plt
 import tensorflow as tf 
 from tensorflow import keras
-from keras.models import model_from_json
+#from keras.models import model_from_json
 import numpy as np
 import os
 os.getcwd()
@@ -78,15 +78,15 @@ print(test_labels.values)
 #tf.keras.models.save_model(model,'CCST_predictor.model', overwrite=True, include_optimizer=True).model.get_config()
 #CCST_model = tf.keras.models.load_model('CCST_predictor.model')
 
-model_json = model.to_json()
-with open("jsn_model.json", "w") as json_file:
-    json_file.write(model_json)
+#model_json = model.to_json()
+#with open("jsn_model.json", "w") as json_file:
+#    json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("jsn_model.h5")
-print("Saved model to disk")
-#model.save('CCST_predictor.h5')
-#CCST_model = keras.models.load_model('CCST_predictor.h5')
-#predictions = CCST_model.predict(x=test_data.values)
+#model.save_weights("jsn_model.h5")
+#print("Saved model to disk")
+model.save('CCST_predictor.h5')
+CCST_model = keras.models.load_model('CCST_predictor.h5')
+predictions = CCST_model.predict(x=test_data.values)
 
 #print(test_data.values)
 #print("")
