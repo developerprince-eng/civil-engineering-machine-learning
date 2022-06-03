@@ -3,9 +3,9 @@
 This is Repository for some simple tutorials you can train yourself with on how to get started
 with AI using Tensorflow
 
-Please Take Note the Tutorial was compiled by: DeveloperPrince for pracrice purposes 
+Please Take Note the Tutorial was compiled by: DeveloperPrince for practice purposes
 
-You can utilize the solutions to improve your understanding in AI using TensorFlow 
+You can utilize the solutions to improve your understanding in AI using TensorFlow
 
 # Note
 
@@ -23,13 +23,13 @@ The repository contains two regression based problems one is complete with a sav
 
 >Concrete compressive strength is determined by mixing different compositions of 7 elements which are namely:
 
-Cement (component 1) 
-Blast Furnace Slag (component 2) 
-Fly Ash (component 3) -- quantitative 
-Water (component 4) -- quantitative 
-Superplasticizer (component 5) 
-Coarse Aggregate (component 6) 
-Fine Aggregate (component 7) 
+Cement (component 1)
+Blast Furnace Slag (component 2)
+Fly Ash (component 3) -- quantitative
+Water (component 4) -- quantitative
+Superplasticizer (component 5)
+Coarse Aggregate (component 6)
+Fine Aggregate (component 7)
 
 These elements are then allowed to sit for a given time period which will be denoted as:
 
@@ -37,7 +37,7 @@ Age -- quantitative -- Day (1~365) -- Input Variable
 
 For which a load is then applied to dry concrete until it raptures or breaks. The maximum Load the concrete can bear before it breaks is known as the compress strength of the concrete.
 
-in order to make use and test the model run 
+in order to make use and test the model run
 
 ## Commands
 ```bash
@@ -62,9 +62,9 @@ arg4 = Water quantity
 arg5 = Superplasticizer quantity
 arg6 = Coarse Aggregate quantity
 arg7 = Fine Aggregate quantity
-arg8 = Age 
+arg8 = Age
 
-From the listed arguments you should get you concrete compressive strength as a json object 
+From the listed arguments you should get you concrete compressive strength as a json object
 
 Here is an example:
 
@@ -91,13 +91,13 @@ If you place less than the required numbers of arguments it will return a json o
 {"error": 0}
 ```
 
-Make sure the comand for compiling and running the model is compile anything outside this will pass a json object of error = 5
+Make sure the command for compiling and running the model is compile anything outside this will pass a json object of error = 5
 
 ```bash
 {"error": 5}
 ```
 
-Make sure the comand for compiling and running the model is compile anything outside this will pass a json object of error = 4, this type of error is a runtime error
+Make sure the command for compiling and running the model is compile anything outside this will pass a json object of error = 4, this type of error is a runtime error
 
 ```bash
 {"error": 4}
@@ -106,12 +106,12 @@ Make sure the comand for compiling and running the model is compile anything out
 
 >Condition monitoring of hydraulic systems is currently a blank or an empty project awaiting for you to try out on building your very own regression machine learning model
 
-#### Contact 
+#### Contact
 
 Please take note of the following contact details for further assistance
 
->Cellphone/Mobile Number: +263716661298
->Email address: prince@techvillage.org.zw
+>Cellphone/Mobile Number: +263786808538/+263714272770
+>Email address: princekudzaimaposa94@gmail.com
 
 
 

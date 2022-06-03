@@ -5,11 +5,12 @@ from __future__ import print_function, absolute_import, division
 
 import h5py
 import pandas as pd
-#import matplotlib.pyplot as plt
-import tensorflow as tf 
+import matplotlib.pyplot as plt
+import tensorflow as tf
 from tensorflow import keras
-#from keras.models import model_from_json
+from keras.models import model_from_json
 import numpy as np
+import matplotlib.patches as mpatches
 import os
 os.getcwd()
 os.listdir(os.getcwd())
@@ -50,44 +51,50 @@ print(test_labels)
 
 
 model = keras.Sequential([
-            keras.layers.Dense(32, activation=tf.nn.relu),
-            keras.layers.Dense(64, activation=tf.nn.relu),
-            keras.layers.Dense(128, activation=tf.nn.relu),
-            keras.layers.Dense(64, activation=tf.nn.relu),
+            keras.layers.Dense(7, activation=tf.nn.relu),
+            keras.layers.Dense(14, activation=tf.nn.relu6),
+            keras.layers.Dense(28, activation=tf.nn.relu6),
+            keras.layers.Dense(35, activation=tf.nn.sigmoid),
+            keras.layers.Dense(42, activation=tf.nn.relu6),
+            keras.layers.Dense(42, activation=tf.nn.relu6),
+            keras.layers.Dense(35, activation=tf.nn.sigmoid),
+            keras.layers.Dense(28, activation=tf.nn.relu6),
+            keras.layers.Dense(14, activation=tf.nn.relu),
             keras.layers.Dense(1)
         ])
 
 model.compile(loss='mean_squared_logarithmic_error',
                 optimizer='adam',
                 metrics=['mae'])
-model.fit(x=train_data.values, y=train_labels.values, epochs=1000)
 
-val_loss, val_acc = model.evaluate(x=test_data.values, y=test_labels.values)
+history = model.fit(x=train_data.values, y=train_labels.values,batch_size=10, epochs=10000)
+model.summary()
+score = model.evaluate(x=test_data.values, y=test_labels.values, verbose=2)
 
-print(val_loss, val_acc)
+print(f'Loss ==================================> {score[0]}')
+print(f'Mean Absolute Error ==============================> {score[1]}' )
 
+plt.plot(history.history['mae'])
+plt.plot(score[1])
+plt.show()
 test_predictions = model.predict(x=test_data.values).flatten()
 
-print(test_labels)
-
-print(test_predictions)
-
-print(test_labels.values)
 """ Save Model """
-
-#tf.keras.models.save_model(model,'CCST_predictor.model', overwrite=True, include_optimizer=True).model.get_config()
-#CCST_model = tf.keras.models.load_model('CCST_predictor.model')
-
-#model_json = model.to_json()
-#with open("jsn_model.json", "w") as json_file:
-#    json_file.write(model_json)
+model_json = model.to_json()
+with open("jsn_model.json", "w") as json_file:x
+   json_file.write(model_json)
 # serialize weights to HDF5
-#model.save_weights("jsn_model.h5")
-#print("Saved model to disk")
+model.save_weights("jsn_model.h5")
+print("Saved model to disk")
 model.save('CCST_predictor.h5')
 CCST_model = keras.models.load_model('CCST_predictor.h5')
 predictions = CCST_model.predict(x=test_data.values)
 
-#print(test_data.values)
-#print("")
-#print(predictions)
+print(test_data.values)
+plt.plot(test_labels.values, color='red')
+plt.plot(predictions, color='green')
+red_patch = mpatches.Patch(color='red', label='Test Data')
+green_patch = mpatches.Patch(color='green', label='Predictated Data')
+plt.legend(handles=[red_patch, green_patch])
+plt.show()
+print("")
